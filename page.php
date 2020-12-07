@@ -26,15 +26,32 @@ if (wp_get_post_parent_id(get_the_ID()) != 0){ ?>
   <?php } ?>
 
 
-<!--     wp_get_post_parent_id(get_the_ID())
+  <?php
+
+  if( wp_get_post_parent_id(get_the_ID()) ) {
+    $fu_current_id = wp_get_post_parent_id(get_the_ID());
+  } else {
+    $fu_current_id = get_the_ID();
+  } 
+  
+  
+  ?>
+  
+  <?php if( wp_get_post_parent_id(get_the_ID()) or get_pages(array('child_of' => get_the_ID())) ) {?>
+
     <div class="page-links">
-      <h2 class="page-links__title"><a href="#">About Us</a></h2>
+      <h2 class="page-links__title"><a href="<?php echo get_permalink(wp_get_post_parent_id(get_the_ID())) ?>"><?php echo get_the_title(wp_get_post_parent_id(get_the_ID())) ?></a></h2>
       <ul class="min-list">
-        <li class="current_page_item"><a href="#">Our History</a></li>
-        <li><a href="#">Our Goals</a></li>
+        <?php wp_list_pages(array(
+          'title_li' => NULL,
+          'child_of' => $fu_current_id
+        )); ?>
+        
       </ul>
     </div> 
-  -->
+<?php } ?>
+
+
 
     <div class="generic-content">
       <?php the_content(); ?>
