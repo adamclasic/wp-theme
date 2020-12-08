@@ -25,6 +25,7 @@
           <p><a href="<?php the_permalink();?>" class="btn btn--blue">Read More</a></p>
         </div>
      <?php
+     echo paginate_links();
      }
     ?>
     </div>
