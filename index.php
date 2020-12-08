@@ -17,7 +17,7 @@
         <div class="post-item">
         <h1 class="headline headline--medium headline--post-title"><a  href="<?php the_permalink(); ?>"><?php the_title() ?></a></h1>
           <div class="metabox">
-            <p>posted by gourilla days ago</p>
+            <p>posted by <?php the_author() ;?> on <?php the_date();?> in <?php echo get_the_category_list(', '); ?></p>
           </div>
           <div class="generic-content">
             <?php the_excerpt(); ?>
