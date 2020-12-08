@@ -9,6 +9,18 @@
         <a href="#" class="btn btn--large btn--blue">Find Your Major</a>
       </div>
     </div>
-
+    <div class="container container--narrow page-section">
+    <?php 
+      while (have_posts()) {
+        the_post();
+        ?>
+        <div class="post-item">
+        <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
+      
+        </div>
+     <?php
+     }
+    ?>
+    </div>
 
 <?php get_footer(); ?>
