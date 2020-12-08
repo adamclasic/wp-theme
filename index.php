@@ -15,8 +15,14 @@
         the_post();
         ?>
         <div class="post-item">
-        <h2><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
-      
+        <h1 class="headline headline--medium headline--post-title"><a  href="<?php the_permalink(); ?>"><?php the_title() ?></a></h1>
+          <div class="metabox">
+            <p>posted by gourilla days ago</p>
+          </div>
+          <div class="generic-content">
+            <?php the_excerpt(); ?>
+          </div>
+          <p><a href="<?php the_permalink();?>" class="btn btn--blue">Read More</a></p>
         </div>
      <?php
      }
