@@ -11,6 +11,8 @@ add_action('wp_enqueue_scripts', 'add_files');
 
 
 function add_features() {
+  register_nav_menu( 'headermenu', 'Primary footer Nav Menu' );
+
   add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'add_features');
