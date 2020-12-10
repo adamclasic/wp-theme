@@ -18,6 +18,9 @@
           $customQueryEvents = new WP_Query(array(
             'posts_per_page' => 2,
             'post_type' => 'event',
+            'meta_key' => 'event_date',
+            'order_by' => 'meta_value_num',
+            'order' => 'ASC'
                     ));
           while($customQueryEvents->have_posts()) {
             $customQueryEvents->the_post();
