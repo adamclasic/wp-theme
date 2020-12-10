@@ -20,7 +20,14 @@
             'post_type' => 'event',
             'meta_key' => 'event_date',
             'order_by' => 'meta_value_num',
-            'order' => 'ASC'
+            'order' => 'ASC',
+            'meta_query' => array(
+              array(
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => Date('Ymd')
+              ),
+            ),
                     ));
           while($customQueryEvents->have_posts()) {
             $customQueryEvents->the_post();

@@ -36,3 +36,21 @@ function add_custom_post() {
 
 add_action('init', 'add_custom_post');
 
+function customDefaultEventsQuery($query)
+{
+  if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
+    $query->set('meta_key', 'event_date');
+    $query->set('order_by', 'meta_value_num');
+    $query->set('order', 'ASC');
+    $query->set('meta_query', array(
+        array(
+          'key' => 'event_date',
+          'compare' => '>=',
+          'value' => Date('Ymd')
+        )
+      )
+    );
+  }
+}
+
+add_action('pre_get_posts', 'customDefaultEventsQuery');
