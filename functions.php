@@ -17,3 +17,22 @@ function add_features() {
 }
 add_action('after_setup_theme', 'add_features');
 
+function add_custom_post() {
+  register_post_type('event',
+    array(
+            'menu_icon' => 'dashicons-calendar',
+            'labels'      => array(
+                'name'          => 'events',
+                'singular_name' => 'event',
+                'add_new_item' => 'add new event',
+                'edit_item' => 'edit event',
+                'all_items' => 'all events'
+            ),
+                'public'      => true,
+                'has_archive' => true,
+        )
+    );
+}
+
+add_action('init', 'add_custom_post');
+
