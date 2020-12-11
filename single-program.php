@@ -68,6 +68,33 @@ while(have_posts()) {
           <?php }} 
           wp_reset_postdata();
           ?>
+                        <h4>Related professors:</h4>
+                        <ul class="link-list min-list">
+
+<?php
+          $relationalQueryProfessors = new WP_Query(array(
+            'posts_per_page' => -1,
+            'post_type' => 'professor',
+            'order_by' => 'title',
+            'order' => 'ASC',
+            'meta_query' => array(
+              array(
+                'key' => 'related_programs',
+                'compare' => 'LIKE',
+                'value' => '"' . get_the_id() . '"',
+              )
+            ), 
+                    ));
+                    // if ($relationalQueryProfessors->have_posts()) {
+                      while($relationalQueryProfessors->have_posts()) {
+                        $relationalQueryProfessors->the_post();
+                        ?>
+
+              <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+
+          <?php }//} 
+          wp_reset_postdata();
+          ?>
 </div>
   </div>
 <?php get_footer(); ?>
