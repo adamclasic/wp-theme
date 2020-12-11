@@ -17,7 +17,9 @@ function add_features() {
 }
 add_action('after_setup_theme', 'add_features');
 
-function add_custom_post() {
+function add_custom_posts() {
+
+  //Events Post Types
   register_post_type('event',
     array(
             'menu_icon' => 'dashicons-calendar',
@@ -32,9 +34,24 @@ function add_custom_post() {
                 'has_archive' => true,
         )
     );
+  //Programs Post Types
+    register_post_type('program',
+    array(
+            'menu_icon' => 'dashicons-awards',
+            'labels'      => array(
+              'name'          => 'program',
+              'singular_name' => 'program',
+              'add_new_item' => 'add new program',
+              'edit_item' => 'edit program',
+              'all_items' => 'all programs'
+            ),
+              'public'      => true,
+              'has_archive' => true,
+        )
+    );
 }
 
-add_action('init', 'add_custom_post');
+add_action('init', 'add_custom_posts');
 
 function customDefaultEventsQuery($query)
 {
