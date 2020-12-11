@@ -49,6 +49,21 @@ function add_custom_posts() {
               'has_archive' => true,
         )
     );
+
+    //Programs Post Types
+      register_post_type('professor',
+      array(
+              'menu_icon' => 'dashicons-welcome-learn-more',
+              'labels'      => array(
+                'name'          => 'professor',
+                'singular_name' => 'professor',
+                'add_new_item' => 'add new professor',
+                'edit_item' => 'edit professor',
+                'all_items' => 'all professors'
+              ),
+                'public'      => true,
+          )
+      );
 }
 
 add_action('init', 'add_custom_posts');
@@ -57,18 +72,10 @@ function customDefaultEventsQuery($query)
 {
   //custom archive-program URL query
   if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
-    // $query->set('meta_key', 'event_date');
     $query->set('posts_per_page', -1);
     $query->set('order_by', 'title');
     $query->set('order', 'DESC');
-    // $query->set('meta_query', array(
-    //     array(
-    //       'key' => 'event_date',
-    //       'compare' => '>=',
-    //       'value' => Date('Ymd')
-    //     )
-    //   )
-    // );
+
   }
 
   //custom archive-event URL query
