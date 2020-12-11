@@ -17,7 +17,7 @@
         <nav class="main-navigation">
           <ul>
             <li <?php if(is_page('about-us')){echo 'class=" current-menu-item"';} ?>><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
-            <li><a href="#">Programs</a></li>
+            <li <?php if(get_post_type() == 'program'){echo 'class=" current-menu-item"';} ?> ><a href="<?php echo site_url('/program') ?>">Programs</a></li>
             <li <?php if(get_post_type() == 'event'){echo 'class=" current-menu-item"';} ?> ><a href="<?php echo get_site_url() . '/event'; ?>">Events</a></li>
             <li><a href="#">Campuses</a></li>
             <li <?php if(get_post_type() == 'post'){echo 'class=" current-menu-item"';} ?> ><a href="<?php echo get_site_url() . '/blog'; ?>">Blog</a></li>

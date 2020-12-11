@@ -32,6 +32,7 @@
           echo paginate_links();
           }
           ?>
+          <p>Check out our <a href="<?php echo site_url() . '/past-events' ?>">past events</a></p>
     </div>
 
 <?php get_footer(); ?>
