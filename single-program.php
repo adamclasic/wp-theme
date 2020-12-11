@@ -26,6 +26,48 @@ while(have_posts()) {
   <?php
     }
   ?>
+
+<?php
+          $relationalQueryEvents = new WP_Query(array(
+            'posts_per_page' => -1,
+            'post_type' => 'event',
+            'meta_key' => 'event_date',
+            'order_by' => 'meta_value_num',
+            'order' => 'ASC',
+            'meta_query' => array(
+              array(
+                'key' => 'event_date',
+                'compare' => '>=',
+                'value' => Date('Ymd')
+              ),
+              array(
+                'key' => 'related_programs',
+                'compare' => 'LIKE',
+                'value' => '"' . get_the_id() . '"',
+              )
+            ), 
+                    ));
+                    if ($relationalQueryEvents->have_posts()) {
+          while($relationalQueryEvents->have_posts()) {
+            $relationalQueryEvents->the_post();
+            ?>
+              <h4>Related Up-comming Events:</h4>
+            <div class="event-summary">
+            <a class="event-summary__date t-center" href="<?php the_permalink(); ?>">
+              <span class="event-summary__month"><?php 
+              $monthDate = new DateTime(get_field('event_date')); 
+              echo $monthDate->format('M');
+              ?></span>
+              <span class="event-summary__day"><?php echo $monthDate->format('d'); ?></span>
+            </a>
+            <div class="event-summary__content">
+              <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+              <p><?php echo wp_trim_words(get_the_excerpt(), 10); ?><a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a></p>
+            </div>
+          </div>
+          <?php }} 
+          wp_reset_postdata();
+          ?>
 </div>
   </div>
 <?php get_footer(); ?>
