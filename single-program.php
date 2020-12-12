@@ -69,7 +69,7 @@ while(have_posts()) {
           wp_reset_postdata();
           ?>
                         <h4>Related professors:</h4>
-                        <ul class="link-list min-list">
+                        <ul class="professor-cards">
 
 <?php
           $relationalQueryProfessors = new WP_Query(array(
@@ -90,7 +90,13 @@ while(have_posts()) {
                         $relationalQueryProfessors->the_post();
                         ?>
 
-              <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+
+          <li class="professor-card__list-item">
+            <a class="professor-card" href="<?php the_permalink(); ?>">
+              <img class="professor-card__image" src="<?php the_post_thumbnail_url() ?>">
+              <span class="professor-card__name"><?php the_title(); ?></span>
+            </a>
+          </li>
 
           <?php }} 
           wp_reset_postdata();
