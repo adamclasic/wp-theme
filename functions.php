@@ -14,6 +14,7 @@ function add_features() {
   register_nav_menu( 'headermenu', 'Primary footer Nav Menu' );
 
   add_theme_support('title-tag');
+  add_theme_support( 'post-thumbnails' );
 }
 add_action('after_setup_theme', 'add_features');
 
@@ -50,9 +51,10 @@ function add_custom_posts() {
         )
     );
 
-    //Programs Post Types
+    //Professor Post Types
       register_post_type('professor',
       array(
+              'supports' => array('title', 'editor', 'thumbnail'),
               'menu_icon' => 'dashicons-welcome-learn-more',
               'labels'      => array(
                 'name'          => 'professor',
