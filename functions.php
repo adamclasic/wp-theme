@@ -1,7 +1,7 @@
 <?php
-
+require 'api.php';
 //partials
-
+echo $apiKey;
 function bannerParcial($args = null) {
   if(!$args['title']) {
     $args['title'] = get_the_title();
