@@ -55,21 +55,38 @@ add_action('after_setup_theme', 'add_features');
 
 function add_custom_posts() {
 
-  //Events Post Types
-  register_post_type('event',
+  //campus Post Types
+  register_post_type('campus',
     array(
-            'menu_icon' => 'dashicons-calendar',
+            'menu_icon' => 'dashicons-location-alt',
             'labels'      => array(
-                'name'          => 'events',
-                'singular_name' => 'event',
-                'add_new_item' => 'add new event',
-                'edit_item' => 'edit event',
-                'all_items' => 'all events'
+                'name'          => 'campus',
+                'singular_name' => 'campus',
+                'add_new_item' => 'add new campus',
+                'edit_item' => 'edit campus',
+                'all_items' => 'all campuses'
             ),
                 'public'      => true,
                 'has_archive' => true,
         )
     );
+    
+  //Events Post Types
+  register_post_type('event',
+  array(
+          'menu_icon' => 'dashicons-calendar',
+          'labels'      => array(
+              'name'          => 'events',
+              'singular_name' => 'event',
+              'add_new_item' => 'add new event',
+              'edit_item' => 'edit event',
+              'all_items' => 'all events'
+          ),
+              'public'      => true,
+              'has_archive' => true,
+      )
+  );
+
   //Programs Post Types
     register_post_type('program',
     array(
