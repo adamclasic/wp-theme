@@ -13,3 +13,5 @@ var heroSlider = new HeroSlider()
 if (module.hot) {
   module.hot.accept()
 }
+
+alert('hey from tizi');
