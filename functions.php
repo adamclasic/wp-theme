@@ -1,7 +1,7 @@
 <?php
 require 'api.php';
 //partials
-echo $apiKey;
+
 function bannerParcial($args = null) {
   if(!$args['title']) {
     $args['title'] = get_the_title();
@@ -149,3 +149,12 @@ function customDefaultEventsQuery($query)
 }
 
 add_action('pre_get_posts', 'customDefaultEventsQuery');
+
+function university_map_key($api)
+{
+  global $apiKey;
+  $api['key'] = $apiKey;
+  return $api;
+}
+
+add_filter('acf/fields/google_map/api', 'university_map_key');
