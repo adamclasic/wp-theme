@@ -31,3 +31,8 @@ require get_theme_file_path('/includes/custom_rest_api.php');
 require get_theme_file_path('/includes/adminAndUsers.php');
 add_action('admin_init', 'subscriber_redirection');
 add_action('wp_loaded', 'hide_wp_bar');
+
+//customize login screen
+require get_theme_file_path('/includes/customize_login_screen.php');
+add_filter('login_headerurl', 'customize_login_screen');
+add_action('login_enqueue_scripts', 'add_login_style');
