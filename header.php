@@ -22,8 +22,15 @@
           </ul>
         </nav>
         <div class="site-header__util">
-          <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
-          <a href="#" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>
+        <?php
+        if( is_user_logged_in()) { ?>
+          <a href="<?php echo wp_logout_url() ?>" class="btn btn--small btn--orange float-left push-right">Log out</a>
+          <?php
+        } else {
+          ?>
+          <a href="<?php echo wp_login_url() ?>" class="btn btn--small btn--orange float-left push-right">Login</a>
+          <a href="<?php echo get_site_url() . '/wp-signup.php' ?>" class="btn btn--small  btn--dark-orange float-left">Sign Up</a>
+        <?php } ?>
           <span class="search-trigger js-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
       </div>

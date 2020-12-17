@@ -6,6 +6,8 @@ function add_custom_posts() {
   register_post_type('campus',
     array(
             'menu_icon' => 'dashicons-location-alt',
+            'capability_type' => 'campus',
+            'map_meta_cap' => true,
             'labels'      => array(
                 'name'          => 'campus',
                 'singular_name' => 'campus',
