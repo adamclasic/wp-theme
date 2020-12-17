@@ -22,6 +22,8 @@ function add_custom_posts() {
   register_post_type('event',
   array(
           'menu_icon' => 'dashicons-calendar',
+          'capability_type' => 'event',
+          'map_meta_cap' => true,
           'labels'      => array(
               'name'          => 'events',
               'singular_name' => 'event',
