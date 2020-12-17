@@ -26,3 +26,8 @@ add_filter('acf/fields/google_map/api', 'university_map_key');
 
 //custom rest api
 require get_theme_file_path('/includes/custom_rest_api.php');
+
+//admin and users
+require get_theme_file_path('/includes/adminAndUsers.php');
+add_action('admin_init', 'subscriber_redirection');
+add_action('wp_loaded', 'hide_wp_bar');
