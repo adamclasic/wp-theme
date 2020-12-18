@@ -5,7 +5,8 @@ function add_custom_posts() {
   //note Post Types
   register_post_type('note',
     array(
-            'menu_icon' => 'dashicons-location-alt',
+            'supports' => array('title', 'editor', 'thumbnail'),
+            'menu_icon' => 'dashicons-edit-page',
             'capability_type' => 'note',
             'map_meta_cap' => true,
             'labels'      => array(
@@ -15,8 +16,10 @@ function add_custom_posts() {
                 'edit_item' => 'edit note',
                 'all_items' => 'all notees'
             ),
-                'public'      => true,
+                'public'      => false,
                 'has_archive' => true,
+                'show_ui' => true,
+                'show_in_rest' => true,
         )
     );
 
