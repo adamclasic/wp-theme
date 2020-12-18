@@ -25,6 +25,7 @@
         <?php
         if( is_user_logged_in()) { ?>
           <a href="<?php echo wp_logout_url() ?>" class="btn btn--small btn--orange float-left push-right">Log out</a>
+          <a href="<?php echo get_site_url() . '/my-notes' ?>" class="btn btn--small  btn--dark-orange float-left">notes</a>
           <?php
         } else {
           ?>

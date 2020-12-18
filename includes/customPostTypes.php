@@ -2,6 +2,24 @@
 
 function add_custom_posts() {
 
+  //note Post Types
+  register_post_type('note',
+    array(
+            'menu_icon' => 'dashicons-location-alt',
+            'capability_type' => 'note',
+            'map_meta_cap' => true,
+            'labels'      => array(
+                'name'          => 'note',
+                'singular_name' => 'note',
+                'add_new_item' => 'add new note',
+                'edit_item' => 'edit note',
+                'all_items' => 'all notees'
+            ),
+                'public'      => true,
+                'has_archive' => true,
+        )
+    );
+
   //campus Post Types
   register_post_type('campus',
     array(
