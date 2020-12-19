@@ -15,98 +15,43 @@ while(have_posts()) {
 
 
   <div class="container container--narrow page-section">
-<?php 
-if (wp_get_post_parent_id(get_the_ID()) != 0){ ?>
+    <div class="min-list link-list">
+      <?php
+      $notesQuery = new WP_Query(array(
+        'post_type' => 'note',
+        'post_per_page' => -1,
+        'author' => get_current_user_id(),
 
-    <div class="metabox metabox--position-up metabox--with-home-link">
-      <p><a class="metabox__blog-home-link" href="<?php echo get_permalink(wp_get_post_parent_id(get_the_ID())) ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title(wp_get_post_parent_id(get_the_ID())) ?></a> <span class="metabox__main"><?php the_title(); ?></span></p>
-    </div>
+      ));
+      while ($notesQuery->have_posts()) {
+        $notesQuery->the_post();
+        ?>
+              <ul class="min-list link-list" id="my-notes">
+        <?php 
+          $userNotes = new WP_Query(array(
+            'post_type' => 'note',
+            'posts_per_page' => -1,
+            'author' => get_current_user_id()
+          ));
 
-  <?php } ?>
+          while($userNotes->have_posts()) {
+            $userNotes->the_post(); ?>
+            <li data-id="<?php the_ID(); ?>">
+              <input readonly class="note-title-field" value="<?php echo esc_attr(get_the_title()); ?>">
+              <span class="edit-note"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span>
+              <span class="delete-note"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
+              <textarea readonly class="note-body-field"><?php echo esc_attr(get_the_content()); ?></textarea>
+              <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right" aria-hidden="true"></i> Save</span>
+            </li>
+          <?php }
 
-
-  <?php
-
-  if( wp_get_post_parent_id(get_the_ID()) ) {
-    $fu_current_id = wp_get_post_parent_id(get_the_ID());
-  } else {
-    $fu_current_id = get_the_ID();
-  } 
-  
-  
-  ?>
-  
-  <?php if( wp_get_post_parent_id(get_the_ID()) or get_pages(array('child_of' => get_the_ID())) ) {?>
-
-    <div class="page-links">
-      <h2 class="page-links__title"><a href="<?php echo get_permalink(wp_get_post_parent_id(get_the_ID())) ?>"><?php echo get_the_title(wp_get_post_parent_id(get_the_ID())) ?></a></h2>
-      <ul class="min-list">
-        <?php wp_list_pages(array(
-          'title_li' => NULL,
-          'child_of' => $fu_current_id
-        )); ?>
-        
+        ?>
       </ul>
-    </div> 
-<?php } ?>
-
-
-
-    <div class="generic-content">
-      <?php the_content(); ?>
+      <?php
+      }
+      ?>
     </div>
-
   </div>
-
-  <!-- this section of text is colored with beige -->
-
-<!-- 
-  <div class="page-section page-section--beige">
-    <div class="container container--narrow generic-content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-    </div>
-  </div> -->
-
-  <div class="page-section page-section--white">
-
-   <div class="container container--narrow">
-      <h2 class="headline headline--medium">Biology Professors:</h2>
-
-      <ul class="professor-cards">
-       <li class="professor-card__list-item">
-       <a href="#" class="professor-card">
-           <img class="professor-card__image" src="images/barksalot.jpg">
-           <span class="professor-card__name">Dr. Barksalot</span>
-         </a>
-       </li>
-       <li class="professor-card__list-item">
-       <a href="#" class="professor-card">
-           <img class="professor-card__image" src="images/meowsalot.jpg">
-           <span class="professor-card__name">Dr. Meowsalot</span>
-         </a>
-       </li>
-     </ul>
-     <hr class="section-break">
-
-    <div class="row group generic-content">
-
-      <div class="one-third">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-      </div>
-
-      <div class="one-third">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-      </div>
-
-      <div class="one-third">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-      </div>
-    </div>
-
-  </div>
-
 </div>
 
   <?php
