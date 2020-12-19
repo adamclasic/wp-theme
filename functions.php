@@ -36,3 +36,7 @@ add_action('wp_loaded', 'hide_wp_bar');
 require get_theme_file_path('/includes/customize_login_screen.php');
 add_filter('login_headerurl', 'customize_login_screen');
 add_action('login_enqueue_scripts', 'add_login_style');
+
+//force privacy of post requersts
+require get_theme_file_path('/includes/post_data.php');
+add_filter('wp_insert_post_date', 'post_data');
